@@ -27,6 +27,18 @@ Google searches the internet. Nothing searches *your stuff* intelligently.
 
 ---
 
+## Who Is It For?
+
+**Grad students** — upload 200 papers, ask what different authors say about a topic, get cited synthesis instead of ctrl+F.
+
+**Law firms** — shared case file workspace. Every attorney searches the same docs. The critic agent flags uncertain answers.
+
+**Engineering teams** — new engineer asks why an architectural decision was made and gets the original RFC cited back to them.
+
+**Research labs** — shared workspace surfaces prior team Q&A before anyone duplicates a search.
+
+---
+
 ## Architecture
 
 DARA is a microservices system, each concern is its own independently deployable service. No service shares a database with another.
