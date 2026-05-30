@@ -23,9 +23,8 @@
     "noFallthroughCasesInSwitch": true,
 
     /* Path aliases */
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"] // Alias for source files always redirect to the src directory
+      "@/*": ["src/*"]
     }
   },
   "include": ["src"]
