@@ -1,4 +1,4 @@
 .env
 /venv
 __pycache__
-/auth_service/venv
+services/auth-service/venv
