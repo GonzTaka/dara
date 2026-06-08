@@ -2,3 +2,4 @@
 /venv
 __pycache__
 services/auth-service/venv
+node_modules
