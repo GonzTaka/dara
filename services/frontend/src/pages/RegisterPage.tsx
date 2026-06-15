@@ -3,11 +3,14 @@ import { register } from '@/api/auth'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card } from '@/components/ui/card'
+import { Link ,useNavigate } from 'react-router-dom'
+
 
 export default function RegisterPage() {
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
+  const navigate= useNavigate()
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   
@@ -19,6 +22,7 @@ export default function RegisterPage() {
     try {
       const response = await register({ email, password })
       console.log('token:', response.access_token)
+      navigate('/login')
 
     } catch (err: unknown) {
       if (err && typeof err === 'object' && 'response' in err) {
@@ -91,10 +95,10 @@ export default function RegisterPage() {
           </form>
           <p className="text-center text-sm text-slate-500 mt-6">
             Already have an account?{' '}
-            <a href="/login" className="text-slate-900 font-medium hover:underline">
-            Sign in
-            </a>
-            </p>
+            <Link to="/login" className="text-slate-900 font-medium hover:underline">
+              Sign in
+            </Link>
+          </p>
         </Card>
       </div>
     </div>
