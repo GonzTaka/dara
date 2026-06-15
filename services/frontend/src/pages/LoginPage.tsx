@@ -3,10 +3,12 @@ import { login } from '@/api/auth'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card } from '@/components/ui/card'
+import { Link,useNavigate } from 'react-router-dom'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const navigate= useNavigate()
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -18,6 +20,7 @@ export default function LoginPage() {
     try {
       const response = await login({ email, password })
       console.log('token:', response.access_token)
+      navigate('/') // Redirect to home page after successful login
       // storage of token and redirect logic would go here
     } catch (err: unknown) {
       if (err && typeof err === 'object' && 'response' in err) {
@@ -88,9 +91,9 @@ export default function LoginPage() {
 
           <p className="text-center text-sm text-slate-500 mt-6">
             Don't have an account?{' '}
-            <a href="/register" className="text-slate-900 font-medium hover:underline">
-              Create one
-            </a>
+            <Link to="/register" className="text-slate-900 font-medium hover:underline">
+            Create one
+            </Link>
           </p>
         </Card>
       </div>
