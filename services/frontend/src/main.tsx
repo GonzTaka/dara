@@ -12,6 +12,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="*" element={<Navigate to="/login" replace />} />
+        <Route path="/dashboard" element={<div className="p-8 text-2xl">Dashboard — coming soon</div>} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

@@ -20,7 +20,7 @@ export default function LoginPage() {
     try {
       const response = await login({ email, password })
       console.log('token:', response.access_token)
-      navigate('/') // Redirect to home page after successful login
+      navigate('/dashboard') // Redirect to home page after successful login
       // storage of token and redirect logic would go here
     } catch (err: unknown) {
       if (err && typeof err === 'object' && 'response' in err) {
