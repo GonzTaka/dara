@@ -2,6 +2,7 @@ from sqlalchemy.orm import Session
 from fastapi import HTTPException, status
 from models.user import User
 from schemas.auth import LoginRequest, RegisterRequest
+from utils.jwt import create_access_token, create_refresh_token
 from utils.security import hash_password, verify_password 
 from utils.jwt import create_access_token
 
@@ -23,3 +24,24 @@ def register_user(request: RegisterRequest, db: Session) -> str:
     db.refresh(new_user)
 
     return create_access_token(user_id=new_user.id)
+
+
+
+def login_user(request: LoginRequest, db: Session) -> tuple[str, str]:
+    user = db.query(User).filter(User.email == request.email).first()
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No account found with this email.",
+        )
+
+    if not verify_password(request.password, user.hashed_password):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect password.",
+        )
+
+    access_token = create_access_token(user_id=user.id)
+    refresh_token = create_refresh_token(user_id=user.id)
+
+    return access_token, refresh_token
